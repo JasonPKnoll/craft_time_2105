@@ -31,5 +31,23 @@ class Event
       end
     end
     all_supplies.uniq
-  end 
+  end
+
+  def attendees_by_craft_interest
+    total_crafts =crafts.map do |craft|
+      craft.name
+    end
+    make_it = Hash.new([])
+    attendees.each do |person|
+      available = total_crafts & person.interests
+      available.each do |craft|
+        make_it[craft] = person
+      end
+    end
+    make_it
+  end
+
+  def crafts_that_use
+
+  end
 end
